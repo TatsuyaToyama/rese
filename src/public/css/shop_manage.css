@@ -1,0 +1,112 @@
+.shop_manage-inner{
+    margin-left: 10%;
+
+}
+
+
+.shop_manager-form{
+    display: flex;
+}
+
+.shop_manager-submit{
+    margin: 20px auto;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+
+}
+
+
+.shop_manager-books{
+
+}
+
+.shop_manager-inner{
+    display: flex;
+
+}
+
+.shop_manager-title{
+    margin: 20px auto;
+}
+
+
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table_contents-row {
+    margin: 0 auto;
+}
+
+.table_contents {
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 150px;
+}
+
+.shop_visited{
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+
+}
+
+.send_mail-title-inner{
+    display: flex;
+
+}
+
+.send_mail-title{
+    margin: 20px auto;
+}
+
+.table-email {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table_contents-row-email {
+    margin: 0 auto;
+}
+
+.table_contents-title {
+    text-align: center;
+    padding: 8px;
+    width: 150px;
+}
+
+.table_contents-contents {
+    text-align: center;
+    padding: 8px;
+    width: 150px;
+    height: 300px;
+}
+
+.email_contents{
+    height: 100%;
+}
+
+.send_email-submit-inner{
+    display: flex;
+}
+
+.send_email-submit{
+    margin: 20px auto;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+    
+}

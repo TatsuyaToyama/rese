@@ -1,0 +1,53 @@
+.manager_title-inner{
+    margin-left: 10%;
+}
+
+.manager_add-inner{
+    display: flex;
+
+}
+
+.manager_add{
+    margin: 10px auto;
+
+}
+
+.table{
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table_contents-row{
+    margin: 0 auto;
+}
+
+.table_contents{
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 150px;
+}
+
+.submit-inner{
+    display: flex;
+}
+
+.add_submit{
+    margin: 20px auto;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+}
+
+
+.shop_manager-title-inner{
+    display: flex;
+}
+
+.shop_manager-title{
+    margin: 10px auto;
+}

@@ -1,0 +1,24 @@
+.contents{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.thanks{
+    margin-top:10%;
+
+}
+
+
+.back{
+    background-color: #0538FF;
+    border-radius: 10px;
+    width: 150px;
+    border: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+
+}

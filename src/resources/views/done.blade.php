@@ -10,7 +10,8 @@
 
 @section('content')
     <div class="contents">
-            <p>ご予約ありがとうございます</p>
-        <a href="/">戻る</a>
+            <p class="thanks">ご予約ありがとうございます</p>
+        <a class="home" href="/">戻る</a>
     </div>
 @endsection
+

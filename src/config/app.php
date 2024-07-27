@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         \Inertia\ServiceProvider::class,
+        App\Providers\StripeServiceProvider::class,
 
         /*
          * Package Service Providers...

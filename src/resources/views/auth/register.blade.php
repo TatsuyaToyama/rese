@@ -16,26 +16,26 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
+    <div class="contents">
+        <div class="registrationtitle">
+            <p class="registration_content">Registration</p>
+        </div>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form class="input" method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="register_title">
-                <p class="register_title-content">Registration</p>
+            <div class="input_inner">
+                <img class="icon" src="{{ asset('storage/icon/user.svg') }}" alt="写真">
+                <input class="input_inner-content" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Username"/>
             </div>
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Username') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <div class="input_inner">
+                <img class="icon" src="{{ asset('storage/icon/email.svg') }}" alt="写真">
+                <input class="input_inner-content" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" placeholder="Email" required />
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <div class="input_inner">
+                <img class="icon" src="{{ asset('storage/icon/lock.svg') }}" alt="写真">
+                <input class="input_inner-content" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" placeholder="Password" />
             </div>
 
             
@@ -56,12 +56,13 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button class="ml-4">
+            <div class="input_inner">
+                <button class="input_submit">
                     {{ __('登録') }}
-                </x-jet-button>
+                </button>
             </div>
         </form>
+    </div>
     </x-jet-authentication-card>
 
 

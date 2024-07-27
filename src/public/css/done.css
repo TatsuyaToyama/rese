@@ -1,0 +1,30 @@
+.contents {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 3px 3px 3px gray;
+    border-radius: 5px;
+    width: 400px;
+    height: 300px;
+
+}
+
+.thanks {
+    font-size: 20px;
+}
+
+
+.home {
+    border: none;
+    background-color: blue;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 6px;
+
+    cursor: pointer;
+    text-decoration: none;
+}

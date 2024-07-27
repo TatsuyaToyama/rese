@@ -1,0 +1,26 @@
+.contents_confirm-sentence{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 11%;
+}
+
+.contents_confirm-resent-submit{
+    border: none;
+    background-color: blue;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 6px;
+    margin: 10px 20px 0 auto;
+    cursor: pointer;
+}
+
+.contents_confirm-done:link,
+.contents_confirm-done:visited,
+.contents_confirm-done:hover,
+.contents_confirm-done:active {
+    color: blue;
+    text-decoration: none;
+}

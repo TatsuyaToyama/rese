@@ -1,4 +1,4 @@
-@extends('layouts.apphome')
+@extends('layouts.apphome_menu')
 
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/menu_logout.css') }}" />
@@ -9,9 +9,15 @@
 @endsection
 
 @section('content')
-    <!-- memo  -->
-    <p>menu-logout</p>
-    <a href="/">Home</a>
-    <a href="/register">Registration</a>
-    <a href="/login">Login</a>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <button class="back" onclick="goBack()">×</button>
+    <div class="menu-inner">
+        <a class="home" href="/">Home</a>
+        <a class="register" href="/register">Registration</a>
+        <a class="login" href="/login">Login</a>
+    </div>
 @endsection

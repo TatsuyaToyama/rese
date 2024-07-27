@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
 use App\Models\Shop;
-use App\Models\book;
-use App\Models\like;
+use App\Models\Book;
+use App\Models\Like;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -17,7 +19,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class BookingController extends Controller
 {
     public function index(){
-        $user = Auth::user();
+        $user = Auth::user();       
         if (isset($user['name'])) {
 
         #店の情報をテーブルから抽出、Likeテーブルから情報を抽出し、Indexに持っていく
@@ -29,8 +31,56 @@ class BookingController extends Controller
         $user_id=[];
         $restaurants_all= Shop::with('area', 'genre')->get();
         }
+        $area_all = Area::get();
+        $genre_all = Genre::get();
 
-        return view('index',compact('restaurants_all','user_id'));
+        return view('index',compact('restaurants_all','user_id','area_all','genre_all'));
+    }
+
+    public function search(Request $request)
+{
+    $area = $request->input('area');
+    $genre = $request->input('genre');
+    $searchWord = $request->input('search_word');
+
+    $query = Shop::query();
+
+    if ($request->area !== '0') {
+        $query->whereHas('area', function ($q) use ($request) {
+            $q->where('id', $request->area);
+        });
+    }
+
+    if ($request->genre !== '0') {
+        $query->whereHas('genre', function ($q) use ($request) {
+            $q->where('id', $request->genre);
+        });
+    }
+
+    if ($request->search_word) {
+        $query->where('name', 'like', '%' . $request->search_word . '%');
+    }
+    $restaurants_all = $query->get();
+    $area_all = Area::get();
+        $genre_all = Genre::get();
+        $user = Auth::user(); 
+        if (isset($user['name'])) {
+        #店の情報をテーブルから抽出、Likeテーブルから情報を抽出し、Indexに持っていく
+        $user_id = $user->id;
+        }else{
+            $user_id = null;
+        }
+
+
+    return view('index', compact('restaurants_all','user_id','area_all', 'genre_all'));
+}
+
+
+
+
+    public function registerd(){
+        
+        return view('registerd');
     }
 
     public function like(Request $request){
@@ -43,7 +93,7 @@ class BookingController extends Controller
                 'user_id' => $user->id,
                 'shop_id' => $shop_id
             ];
-            like::create($like_item);
+            Like::create($like_item);
             return redirect('/');
         }else{
             // ログインしていない場合、ログインに誘導
@@ -56,7 +106,7 @@ class BookingController extends Controller
         $user_id = $user->id;
         $restaurant = json_decode($request -> input(['shop_delete']),true);
         $shop_id=$restaurant['id'];
-        like::where('shop_id', $shop_id)
+        Like::where('shop_id', $shop_id)
             ->where('user_id', $user_id)
             ->delete();
         return redirect('/');
@@ -72,12 +122,17 @@ class BookingController extends Controller
             $restaurant = json_decode($request -> input(['restaurant_details']),true);
         }
 
+        if($restaurant !== null){
+             $request->session()->put('restaurant', $restaurant);
+        }else{
+            $restaurant = $request->session()->get('restaurant', []);
+        }
         return view('details',['restaurant' =>$restaurant]);
 
     }
 
 
-    public function done(Request $request){
+    public function done(BookRequest $request){
         // 予約終了ページで取得した日時、人数のデータをテーブルに格納する
         $booking_info = $request->only(['restaurant_id','booking_date','booking_time','booking_person']);
         $user = Auth::user();
@@ -109,10 +164,10 @@ class BookingController extends Controller
             $user_id = $user->id;
             $manager_all=Role::where('user_id',$user_id)->with('shop')->get();
             // ユーザーIdでRoleに該当しているIDがあるかを確認
-            if($manager_all !==null){
+            if($manager_all !== null){
                 // managerだったら、menu-managerに接続
                 $mult=1;
-                // $manager_all['manager']の０．１の値を全て掛け合わせ・足し合わせする
+                // $manager_all['manager']の０,１の値を全て掛け合わせ・足し合わせする
                 for($i=0; $i<count($manager_all); $i++){
                     $mult *= $manager_all[$i]['manager'];
                 }
@@ -147,14 +202,21 @@ class BookingController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         $user_name = $user->name;
-        $book_item= book::where('user_id', $user_id)
+        $book_item= Book::where('user_id', $user_id)
                     ->with('shop')
                     ->get();               
-        $like_item= like::where('user_id', $user_id)
+        $like_item= Like::where('user_id', $user_id)
                     ->with('shop')
                     ->with('area','genre')
                     ->get();
         return view('mypage', compact('user_name','book_item', 'like_item'));
+    }
+
+    public function review(Request $request){
+        $review = $request->only(['shop_details','shop_id','point','comment']);
+        $review['user_id'] = Auth::user()->id;
+        Review::create($review);  
+        return view('reviewed');
     }
 
     public function dislikes(Request $request){
@@ -162,7 +224,7 @@ class BookingController extends Controller
         $user_id = $user->id;
         $restaurant = json_decode($request -> input(['shop_delete']),true);
         $shop_id = $restaurant['shop_id'];
-        like::where('shop_id', $shop_id)
+        Like::where('shop_id', $shop_id)
             ->where('user_id', $user_id)
             ->delete();
         return redirect('/mypage');
@@ -171,17 +233,44 @@ class BookingController extends Controller
 
     public function modify(Request $request){
         // myPageで押された特定の予約の詳細情報をテーブルから取得
-        // その時、ログインしている名前？メール？で特定を行う
         $user = Auth::user();
         $user_id = $user->id;
         $book_details = json_decode($request -> input(['book_details']),true);
         $book_qr=$book_details;
-        // unset($booK_qr['content']);
+
+        $amount_data = Book::where('id',$book_qr['id'])->get('amount');
+        $amount = $amount_data['0']['amount'];
+        $user_name = User::where('id',$book_qr['user_id'])->get('name');
+        $shop_name = Shop::where('id',$book_qr['shop_id'])->get('name');
+        $book_qr['user_name'] = mb_convert_encoding($user_name['0']['name'], 'UTF-8');
+        $book_qr['shop_name'] = mb_convert_encoding($shop_name['0']['name'], 'UTF-8');
+        $keysToDelete = ['user_id', 'shop_id', 'id', 'created_at', 'updated_at', 'visited', 'shop'];
+        foreach ($keysToDelete as $key) {
+            unset($book_qr[$key]);
+        }
         $jsonString = json_encode($book_qr);
+        $jsonString = utf8_encode($jsonString);
         $qr_code = QrCode::size(300)->generate($jsonString);
 
 
-        return view('modify',compact('user_id','book_details','qr_code'));
+        return view('modify',compact('user_id','book_details','qr_code','amount'));
+    }
+
+    public function delete(Request $request){
+        // myPageで押された特定の予約の詳細情報をテーブルから取得
+        // その時、ログインしている名前？メール？で特定を行う
+        $user = Auth::user();
+        $user_id = $user->id;
+        $book_details = json_decode($request -> input(['book_details']),true);
+
+        Book::where('shop_id', $book_details['shop_id'])
+            ->where('user_id', $book_details['user_id'])
+            ->where('date', $book_details['date'])
+            ->where('time', $book_details['time'])
+            ->where('number', $book_details['number'])
+            ->delete();
+       
+        return redirect('/mypage');
     }
 
     public function modified(Request $request){
@@ -190,7 +279,7 @@ class BookingController extends Controller
         $book_modified = $request->all();
         unset($book_modified['_token']);
         $book_modified['user_id']=$user_id;
-        book::find($book_modified['id'])->update($book_modified);
+        Book::find($book_modified['id'])->update($book_modified);
         return view('done');
     }
 
@@ -217,9 +306,30 @@ class BookingController extends Controller
     public function shop_manage(Request $request){
         
         $shop_id = $request->only('shop_details');
-        $book_all=book::where('shop_id',$shop_id['shop_details'])->with('user','shop')->get();
+        $book_all=Book::where('shop_id',$shop_id['shop_details'])->with('user','shop')->get();
         return view('shop_manage',compact('book_all','shop_id'));
     }
+
+    public function shop_visited(Request $request){
+        $shop = $request->input('shop_id');
+        $visit = $request->input('shop_visited');
+        $book_request = $request->input('book');
+        $book = json_decode($book_request, true);
+        
+        Book::where('shop_id',$shop)
+            ->where('user_id',$book['user_id'])
+            ->where('date',$book['date'])
+            ->where('time',$book['time'])
+            ->update(['visited' => $visit]);
+        $book_all=Book::where('shop_id',$shop)->with('user','shop')->get();
+        
+        $shop_id['shop_details'] = $shop;       
+
+        return view('shop_manage',compact('book_all','shop_id'));
+    }
+
+
+    
 
     public function manage_shop_edit(Request $request){
         $shop_id = $request->only('shop_id');
@@ -237,7 +347,10 @@ class BookingController extends Controller
         $shop_info = shop::where('id',$shop_id)->with('area','genre')->get();
         $area_info=Area::get();
         $genre_info=Genre::get();
-        $pic_info = Storage::disk('public')->files();
+        $pic_info = collect(Storage::disk('public')->files())
+                    ->reject(function ($pic_info) {
+                            return $pic_info === '.DS_Store';
+                        });
         
         return view('shop_manage_edit',compact('shop_info','area_info','genre_info','pic_info'));
     }

@@ -1,0 +1,135 @@
+.search{
+    margin-left: auto;
+    margin-right: 10%;
+    display: flex;
+    vertical-align: middle;
+    padding-top: 30px;
+    width: 40%;
+
+}
+
+.shop_search{
+    background-color: white;
+    height: 40px;
+    width: 100%;
+    box-shadow: 3px 3px 3px gray;
+    border-radius: 5px;
+}
+
+.search_area{
+    padding-left: 15px;
+    height: 100%;
+    border:none;
+    cursor: pointer;
+}
+
+.search_genre{
+    padding-left: 15px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
+
+}
+
+.icon{
+    height: 80%;
+    width: 20px;
+}
+
+.search_word{
+    padding-left: 15px;
+    height: 100%;
+    border: none;
+    width: 30%;
+}
+
+
+
+
+.contents{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.restaurant{
+    background-color: white;
+    box-shadow:3px 3px 3px gray;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    height: 350px;
+    width: 300px;
+    border-radius: 10px;
+
+ 
+  
+    
+}
+
+.restaurant_pic{
+    width:  300px;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.restaurant_contents{
+    padding: 20px;
+}
+
+.restaurant_name{
+    margin-bottom: 0%;
+    margin-top: 0%;
+
+}
+
+.restaurant_tag{
+    display: flex;
+    color: gray;
+    font-size: 12px;
+}
+
+.restaurant_area{
+    margin-right: 3px;
+}
+
+.restaurant_submit{
+    display: flex;
+}
+
+.restaurant_submit-likes {
+    margin-left: auto
+}
+
+
+.restaurant_info{   
+    border: none;
+    background-color: blue;
+    color: white;   
+    padding:5px 15px 5px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+.restaurant_like{
+    color: grey;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 40px;
+    font-size: 30px;
+    transform: scaleX(0.8);
+    cursor: pointer;
+}
+
+.restaurant_dislike {
+    color: red;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 40px;
+    font-size: 30px;
+    transform: scaleX(0.8);
+    cursor: pointer;
+}

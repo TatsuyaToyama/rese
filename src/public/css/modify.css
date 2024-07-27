@@ -1,0 +1,111 @@
+.confirm_title-inner{
+    margin-left: 10%;
+}
+
+.change_contents{
+    display: flex;
+}
+.booking {
+    width: 50%;
+}
+
+.book_change-title-inner{
+    display: flex;
+}
+
+.book_change-title{
+    margin: 0 auto;
+
+}
+
+.book_change-form{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table_contents-row {
+    margin: 0 auto;
+}
+
+.table_contents {
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 150px;
+}
+
+.books_delete{
+    display: flex;
+}
+
+.confirm_book{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+.confirm_book-inner{
+    display: flex;
+}
+.confirm_book-title{
+    margin: 0 auto;
+}
+.confirm_qr{
+    display: flex;
+
+}
+.qr{
+    margin: 0 auto;
+}
+
+.books_delete-submit{
+    background-color: red;
+    height: 10%;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    width: 300px;
+    margin: 30px auto;
+
+}
+.books_change-submit {
+    
+    background-color: blue;
+    height: 10%;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    width: 300px;
+}
+
+.change_date{
+    width: 100%;
+}
+
+.change_time{
+    width: 100%;
+}
+
+.change_number{
+    width: 100%;
+}
+
+.payment{
+    margin:10% 0 0 20%;  
+}

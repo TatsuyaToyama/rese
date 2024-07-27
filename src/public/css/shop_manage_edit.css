@@ -1,0 +1,86 @@
+.edit_contents{
+    height: 1000px;
+
+}
+.edit_title-inner{
+    display: flex;
+    margin-top: 30px;
+}
+.edit_title{
+    margin: 0 auto;
+}
+
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table_contents-row {
+    margin: 0 auto;
+}
+
+.table_contents {
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 200px;
+}
+
+.table_contents-sentence{
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 200px;
+    height: 300px;
+
+}
+
+.edit_input{
+    width: 100%;
+}
+
+.edit_sentence{
+    height: 100%;
+    word-wrap: break-word;
+}
+
+.edit_submit-inner{
+    display: flex;
+}
+
+.edit_submit{
+    margin: 20px auto;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+}
+
+.new_add{
+
+}
+
+.new_add-input{
+   width: 100%;
+
+}
+
+.new_add-submit{
+    width: 100%;
+    margin: 20px auto;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+}
+
+.table_contents-pic{
+    text-align: center;
+    border: 1px solid black;
+    padding: 8px;
+    width: 300px;
+}

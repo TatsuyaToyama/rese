@@ -14,7 +14,9 @@
         "laravel/jetstream": "^2.9",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "laravel/ui": "^3.4",
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "stripe/stripe-php": "^15.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
