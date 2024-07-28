@@ -118,6 +118,7 @@
             <div class="likes_title-inner">
                 <h2 class="likes_title">お気に入り店舗</h2>
             </div>
+            <div class="restaurant-inner">
             @foreach ($like_item as $likes)
                 <div class="restaurant">
                     <img class="restaurant_pic" src="{{ asset($likes->shop->picture) }}" alt="写真">
@@ -143,6 +144,7 @@
                     </div> 
                 </div>
             @endforeach
+            </div>
         </div>
     </div>
 @endsection
