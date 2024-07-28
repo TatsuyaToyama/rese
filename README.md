@@ -6,7 +6,7 @@
 ## 概要説明
 登録した飲食店を検索、お気に入り登録、予約を行うことができるアプリケーション
 管理者も予約確認、来店すみかどうかをチェックできます
-![home](/src/storage/picture/home.jpg)
+![home](./src/storage/picture/home.jpg)
 
 
 
@@ -49,10 +49,10 @@ Nginx 1.22.1
 Mailcatcher
 
 ## テーブル設計
-![table](/src/storage/picture/table.jpg)
+![table](./src/storage/picture/table.jpg)
 
 ## ER図
-![ER](/src/storage/picture/ER.jpg)
+![ER](./src/storage/picture/ER.jpg)
 
 ## 環境構築
 
