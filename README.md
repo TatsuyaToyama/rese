@@ -6,7 +6,7 @@
 ## 概要説明
 登録した飲食店を検索、お気に入り登録、予約を行うことができるアプリケーション
 管理者も予約確認、来店すみかどうかをチェックできます
-![home](./src/storage/picture/home.jpg)
+![home](/src/storage/app/public/picture/home.jpg)
 
 
 
@@ -49,10 +49,10 @@ Nginx 1.22.1
 Mailcatcher
 
 ## テーブル設計
-![table](./src/storage/picture/table.jpg)
+![table](/src/storage/app/public/picture/table.jpg)
 
 ## ER図
-![ER](./src/storage/picture/ER.jpg)
+![ER](/src/storage/app/public/picture/ER.jpg)
 
 ## 環境構築
 
@@ -81,23 +81,32 @@ Auth::routes()を使用するためにlaravel/uiパッケージをインスト�
 途中のauth/login.blade.php、auth/register.blade.phpは全てNoにしてください。
 
 1. composer requireを実行
+```
 composer require laravel/ui
+```
 2. 認証スキャフォールドを生成
+```
 php artisan ui bootstrap --auth
+```
 
 #### Mailcatherのインストール
 mailcatcherを以下にてインストールして下さい
+```
 gem install mailcatcher
-
+```
 
 #### スケジューラーの送信設定
 スケジューラーの送信設定を行うため、以下を実行して下さい。
+```
 apt-get update 
 apt-get install cron
 apt-get install vim 
+```
 
 ここで、下記文を加えてください。
+```
 0 0 * * * cd /（場所を追加して下さい）/rese && php artisan schedule:run >> /var/log/laravel-schedule.log 2>&1
+```
 場所を追加してくださいとコメントがある部分に今回ダウンロードしたReseアプリの保存場所を記載ください。
 
 また、上記文は、分、時間、日、月、曜日を設定し、リマインダーメールを設定することができます。
