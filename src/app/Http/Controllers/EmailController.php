@@ -27,6 +27,5 @@ class EmailController extends Controller
         }
 
         return redirect('/');
-        // return redirect()->back()->with('success', 'Email sent successfully!');
 }
 }

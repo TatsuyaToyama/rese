@@ -44,24 +44,15 @@ Route::middleware(['verified'])->group(function(){
     Route::post('/manage-shop', [BookingController::class, 'shop_manage']);
     Route::post('/manage-shop/send', [EmailController::class, 'sendEmail']);
     Route::post('/manage-shop/visited', [BookingController::class, 'shop_visited']);
-
     Route::post('/manage-shop/amount', [PaymentController::class, 'amount']);
     Route::patch('/manage-shop/amount', [PaymentController::class, 'amount']);
-    // Route::get('/manage-shop/amount', [PaymentController::class, 'amount']);
     Route::POST('/charge', [PaymentController::class, 'charge']);
-
     Route::post('/manage-all/add', [BookingController::class, 'manage_add']);
     Route::post('/manage-shop/edit', [BookingController::class, 'manage_shop_edit']);
     Route::get('/manage-shop/edit', [BookingController::class, 'manage_shop_edit']);
     Route::post('/manage-shop/edit/upload', [BookingController::class, 'shop_manage_upload']);
     Route::post('/manage-shop/edit/add', [BookingController::class, 'shop_manage_add']);
     Route::post('/manage-shop/edit/update', [BookingController::class, 'shop_manage_update']);
-    Route::get('/checkout', function () {
-    return view('checkout');
-});
-
-
-
 });
 Auth::routes();
 Auth::routes(['verify' => true]);

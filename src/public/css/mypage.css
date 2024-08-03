@@ -47,9 +47,7 @@ display: flex;
 }
 
 .likes{
-    /* display: flex; */
     flex-direction: column;
-    /* flex-wrap: wrap; */
     width: 60%;
     align-items: flex-start;
     justify-content: flex-start;
@@ -63,13 +61,12 @@ display: flex;
 }
 
 .likes_title{
-margin: 0;
-padding: 10px 0;
+    margin: 0;
+    padding: 10px 0;
 }
 
 .restaurant-inner{
     display: flex;
-
     flex-wrap: wrap;
 }
 

@@ -1,11 +1,11 @@
 .edit_contents{
     height: 1000px;
-
 }
 .edit_title-inner{
     display: flex;
     margin-top: 30px;
 }
+
 .edit_title{
     margin: 0 auto;
 }
@@ -59,13 +59,8 @@
     border: none;
 }
 
-.new_add{
-
-}
-
 .new_add-input{
    width: 100%;
-
 }
 
 .new_add-submit{

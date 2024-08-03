@@ -21,7 +21,6 @@
                 @endforeach
             </select>
             <img class="icon" src="{{ asset('storage/icon/glass.svg') }}" alt="写真">
-            <!-- <button>検索</button> -->
             <input class="search_word" type="text" name="search_word" id="search_word_input" value="{{ request('search_word') }}" placeholder="search....">
         </form>
     </div>

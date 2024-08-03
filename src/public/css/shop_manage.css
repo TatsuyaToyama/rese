@@ -1,8 +1,6 @@
 .shop_manage-inner{
     margin-left: 10%;
-
 }
-
 
 .shop_manager-form{
     display: flex;
@@ -16,29 +14,20 @@
     width: 300px;
     border-radius: 10px;
     border: none;
-
-}
-
-
-.shop_manager-books{
-
 }
 
 .shop_manager-inner{
     display: flex;
-
 }
 
 .shop_manager-title{
     margin: 20px auto;
 }
 
-
 .table {
     margin: 0 auto;
     border-collapse: collapse;
 }
-
 
 .table_contents-row {
     margin: 0 auto;
@@ -62,7 +51,6 @@
 
 .send_mail-title-inner{
     display: flex;
-
 }
 
 .send_mail-title{
